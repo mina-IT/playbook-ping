@@ -4,6 +4,7 @@
   gather_facts: False
   connection: local
   tasks:
-- name: ping
-  shell: ping -c 1 -w 2 8.8.8.8
-  ignore_errors: true
+  - name: Connection-ping
+    delegate_to: localhost
+    command: ping -c 2 "{{ inventory_hostname }}"
+    register: router_ping
